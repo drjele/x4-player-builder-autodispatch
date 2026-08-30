@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  A player build-storage request must only be accepted by a player-owned construction vessel that
+  has a valid, blacklist-compliant gate route to the requesting build module.
+
+  This check is deliberately on the receiving side. build.buildstorage broadcasts to nearby ships
+  with purpose.build, and vanilla NPC requests are allowed to cross faction boundaries. Filtering
+  only player requests here preserves that NPC behaviour while preventing an NPC builder from being
+  silently assigned to a player station without the normal hire/payment flow.
+-->
+<diff>
+    <!-- The signal handler can run before the main action loop, so initialise this in <init>. -->
+    <add sel="//init/set_command_action[@commandaction='commandaction.searchingtrades']" pos="after">
+        <include_interrupt_actions ref="GetBlacklistgroup"/>
+    </add>
+
+    <add sel="//handler[@comment='Requested for build']/conditions/check_value[@value='not $playeronly or event.param2.isplayerowned']" pos="after">
+        <check_value value="not event.param2.isplayerowned or this.ship.isplayerowned"/>
+        <check_value value="not event.param2.isplayerowned or this.ship.gatedistance.{event.param2}.{$blacklistgroup}.{this.ship} ge 0"/>
+    </add>
+</diff>

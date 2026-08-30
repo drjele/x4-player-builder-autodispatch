@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Vanilla deliberately limits automatic construction-vessel requests to non-player build modules.
+  Remove only that ownership gate from both places in build.buildstorage:
+
+    1. the branch that broadcasts a request once the build is waiting for a CV;
+    2. the short polling branch used while a build needs a CV but is still waiting for resources.
+
+  The recipient-side patch in order.build.find.task.xml makes the newly enabled player requests
+  player-only. NPC stations and their existing cross-faction hiring behaviour remain untouched.
+-->
+<diff>
+    <replace sel="//do_if[@value='not $buildmodule.isplayerowned and $buildmodule.iswaitingforconstructionvessel and not $buildmodule.constructionvessel']/@value">$buildmodule.iswaitingforconstructionvessel and not $buildmodule.constructionvessel</replace>
+
+    <replace sel="//do_if[@value='not $buildmodule.isplayerowned and $buildmodule.requiresconstructionvessel and not $buildmodule.constructionvessel']/@value">$buildmodule.requiresconstructionvessel and not $buildmodule.constructionvessel</replace>
+</diff>

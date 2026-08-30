@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content id="drjele_player_builder_autodispatch"
+         name="Player Builder Autodispatch"
+         description="Lets player-owned stations automatically request a construction vessel when a build or reconstruction task is ready, while ensuring that those requests can only be accepted by player-owned builders running Find Build Tasks. NPC construction behaviour is unchanged."
+         author="drjele"
+         version="100"
+         date="2026-08-30"
+         save="0"
+>
+    <text language="44"
+          name="Player Builder Autodispatch"
+          description="Lets player-owned stations automatically request a construction vessel when a build or reconstruction task is ready, while ensuring that those requests can only be accepted by player-owned builders running Find Build Tasks. NPC construction behaviour is unchanged."
+    />
+    <dependency version="900"/>
+</content>
