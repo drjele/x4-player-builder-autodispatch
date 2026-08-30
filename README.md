@@ -1,5 +1,9 @@
 # Player Builder Autodispatch for X4: Foundations
 
+<p align="center">
+  <img src="extension/preview.jpg" alt="Player Builder Autodispatch" width="512">
+</p>
+
 Player-owned builders running **Find Build Tasks** do not automatically respond when one of your stations need a construction vessel. This is not a range or pilot-skill problem: vanilla
 `build.buildstorage` explicitly broadcasts automatic requests only for non-player build modules.
 
