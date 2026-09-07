@@ -19,14 +19,14 @@ Before accepting, the builder must also have a valid gate route to the station u
 ./install.sh
 ```
 
-The installer finds the usual Steam layouts, including additional library folders, and copies
-`extension/` into `X4 Foundations/extensions/drjele_player_builder_autodispatch`. To select a different installation:
+The helper copies `extension/` into the game's `extensions/<extension-id>`
+directory, using the id in `extension/content.xml`. It searches the usual Steam layouts and additional library folders. To choose an installation:
 
 ```bash
 X4_PATH="/path/to/X4 Foundations" ./install.sh
 ```
 
-Restart X4 after installing or updating an extension. To remove it:
+Restart X4 after installing or updating. To remove the manual installation:
 
 ```bash
 ./install.sh --uninstall
@@ -57,21 +57,31 @@ Two small XPath patches are applied to the 9.00 vanilla AI scripts:
 
 The second patch is essential. Simply deleting vanilla's player exclusion would allow a nearby NPC builder to accept the broadcast without going through the normal manual hire and payment flow.
 
-## Publishing to Steam Workshop
+## Status
 
-The repository uses the same publishing helper as the other drjele X4 mods. Install the **X Tools**
-package (Steam app 282160), keep Steam running and logged in, then use:
+Both selectors and their single-match cardinality are verified against the installed X4 9.00 game files. The merged XML is structurally validated, and automatic player-builder assignment has been verified in game on an existing save.
+
+## Publishing to the Steam Workshop
+
+Install **X Tools** (Steam app 282160) and keep Steam running and logged in with an account that owns X4. On Linux, install Proton as well; on Windows, run the helper from Git Bash, MSYS or Cygwin.
 
 ```bash
 ./publish.sh publish
 ./publish.sh update "what changed"
 ```
 
-The first command creates `steam/workshop-id`; leave that file uncommitted or commit it yourself as appropriate. The script keeps the Workshop id out of the manual-install `content.xml` so a local copy does not collide with a Workshop subscription.
+Use `publish` once, then `update` with a change note. `X4_PATH`,
+`X_TOOLS_PATH` and `PROTON_PATH` override automatic discovery. The staging location must contain an `extensions` directory.
 
-## Status
+The first upload records the numeric id in `steam/workshop-id`; retain that file for future updates. The readable id in the repository's `content.xml`
+stays unchanged. After publishing, open the printed Workshop URL, complete any required Steam agreement and choose the item's visibility. Avoid keeping both the manual installation and a subscription to the same mod enabled.
 
-Both selectors and their single-match cardinality are verified against the installed X4 9.00 game files. The merged XML is structurally validated, and automatic player-builder assignment has been verified in game on an existing save.
+Update the manifest version and release date together with `CHANGELOG.md`
+when releasing. See [Development](DEVELOPMENT.md) for staging, platform and release conventions.
+
+## Development
+
+See [DEVELOPMENT.md](DEVELOPMENT.md) for setup, code style, validation and release conventions.
 
 ## Legal
 
