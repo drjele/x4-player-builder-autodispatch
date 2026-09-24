@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [v1.1.0] - 2026-09-24 - Debug logging
+
 ### Changed
 
 - Standardize repository settings, development checks, code style and documentation.
@@ -12,6 +14,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Debug log output for every construction vessel search of a player station and every builder that answers one, and a **Debug logging** toggle in Extension Options to switch it on. SirNukes Mod Support APIs becomes an optional dependency, for that toggle only.
 - `publish.sh update` options `--minor`, `--namedesc` and `--readback`, for an update that leaves the version number alone, one that also pushes the name and description to Steam, and one that writes Steam's own text back into `content.xml.steam`.
 
 ### Fixed
@@ -31,4 +34,5 @@ All notable changes to this project will be documented in this file.
 - Blacklist-aware gate-route validation before a builder accepts a task, preventing unreachable builders from reserving it.
 - Existing-save support, X4 9.00 compatibility, installation and Steam Workshop publishing helpers, and an in-game verified assignment flow.
 
+[v1.1.0]: https://github.com/drjele/x4-player-builder-autodispatch/releases/tag/v1.1.0
 [v1.0.0]: https://github.com/drjele/x4-player-builder-autodispatch/releases/tag/v1.0.0

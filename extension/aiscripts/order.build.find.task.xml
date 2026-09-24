@@ -9,4 +9,8 @@
         <check_value value="not event.param2.isplayerowned or this.ship.isplayerowned"/>
         <check_value value="not event.param2.isplayerowned or this.ship.gatedistance.{event.param2}.{$blacklistgroup}.{this.ship} ge 0"/>
     </add>
+
+    <add sel="//handler[@comment='Requested for build']/actions/assign_construction_vessel" pos="before">
+        <debug_text text="'DrJele Player Builder Dispatch: %s %s answers the build request of your %s in %s'.[this.ship.idcode, this.ship.knownname, event.param2.container.knownname, event.param2.sector.knownname]" chance="if event.param2.isplayerowned then (if global.$DrJelePlayerBuilderDebugChance? then global.$DrJelePlayerBuilderDebugChance else 0) else 0"/>
+    </add>
 </diff>

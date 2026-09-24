@@ -13,6 +13,8 @@ Before accepting, the builder must also have a valid gate route to the station u
 
 **Requires X4: Foundations 9.00.** No DLC or other mod is required. It works on an existing savegame and stores no state of its own.
 
+The only option is **Debug logging**, in **Options → Extension Options → Player Builder Autodispatch** with [SirNukes Mod Support APIs](https://steamcommunity.com/sharedfiles/filedetails/?id=2042901274) installed. It writes every construction vessel search of a player station, and every builder that answers one, to the debug log, prefixed `DrJele Player Builder Dispatch:`; that needs the game started with `-debug scripts`.
+
 ## Install
 
 ```bash

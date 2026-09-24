@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mdscript name="DrJele_PlayerBuilderDispatchOptions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="md.xsd">
+    <cues>
+
+        <cue name="RegisterOptions" instantiate="true" version="1">
+            <conditions>
+                <event_cue_signalled cue="md.Simple_Menu_Options.Reloaded"/>
+            </conditions>
+            <actions>
+                <signal_cue_instantly
+                        cue="md.Simple_Menu_Options.Register_Option"
+                        param="table[
+            $id        = 'drjele_player_builder_dispatch_debug',
+            $category  = 'Player Builder Autodispatch',
+            $name      = 'Debug logging',
+            $mouseover = 'Writes every construction vessel search of a player station and every builder that answers one to the debug log. Needs the game started with -debug scripts.',
+            $type      = 'button',
+            $default   = 0,
+            $callback  = OnDebugChanged,
+            ]"/>
+            </actions>
+        </cue>
+
+        <cue name="OnDebugChanged" instantiate="true">
+            <conditions>
+                <event_cue_signalled/>
+            </conditions>
+            <actions>
+                <set_value name="global.$DrJelePlayerBuilderDebugChance" exact="if event.param.$value then 100 else 0"/>
+            </actions>
+        </cue>
+
+    </cues>
+</mdscript>

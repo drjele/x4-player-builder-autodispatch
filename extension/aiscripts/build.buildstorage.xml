@@ -3,4 +3,8 @@
     <replace sel="//do_if[@value='not $buildmodule.isplayerowned and $buildmodule.iswaitingforconstructionvessel and not $buildmodule.constructionvessel']/@value">$buildmodule.iswaitingforconstructionvessel and not $buildmodule.constructionvessel</replace>
 
     <replace sel="//do_if[@value='not $buildmodule.isplayerowned and $buildmodule.requiresconstructionvessel and not $buildmodule.constructionvessel']/@value">$buildmodule.requiresconstructionvessel and not $buildmodule.constructionvessel</replace>
+
+    <add sel="//do_if[@value='$buildmodule.iswaitingforconstructionvessel and not $buildmodule.constructionvessel']" pos="prepend">
+        <debug_text text="'DrJele Player Builder Dispatch: player build storage in %s is looking for a construction vessel'.[this.sector.knownname]" chance="if $buildmodule.isplayerowned then (if global.$DrJelePlayerBuilderDebugChance? then global.$DrJelePlayerBuilderDebugChance else 0) else 0"/>
+    </add>
 </diff>
